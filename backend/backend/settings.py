@@ -163,6 +163,12 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookAppOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
 )
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = reverse_lazy('account_confirm_complete')
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = reverse_lazy('account_confirm_complete')
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
@@ -266,9 +272,8 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'email']
 SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 
+# Email backend settings for Django
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'csdwkr66@gmail.com'
 EMAIL_HOST_PASSWORD = 'kang5265@@'
@@ -276,14 +281,7 @@ EMAIL_HOST_PASSWORD = 'kang5265@@'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'mantory'
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_CONFIRM_EMAIL_ON_GET = False
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = reverse_lazy(
-    'account_confirm_complete')
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = reverse_lazy(
-    'account_confirm_complete')
+
 
 ACCOUNT_USERNAME_REQUIRED = False
 

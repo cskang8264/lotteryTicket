@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email','phone','name')
+        fields = ('id','email','phone','name')
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -60,7 +60,7 @@ class CustomUserDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'name', 'phone')
+        fields = ('id','email', 'name', 'phone',  "csrf_token")
         read_only_fields = ('email',)
 
 
