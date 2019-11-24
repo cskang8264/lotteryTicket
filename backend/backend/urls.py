@@ -36,6 +36,8 @@ urlpatterns = [
     #board 
     path('board/', include('board.urls')),
    
+   #main_crawling
+    path('main/', include('main_crawling.urls')),
 
 
     

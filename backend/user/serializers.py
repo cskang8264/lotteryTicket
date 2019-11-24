@@ -60,9 +60,10 @@ class CustomUserDetailsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id','email', 'name', 'phone',  "csrf_token")
-        read_only_fields = ('email',)
+        fields = ('id','email', 'name', 'phone',  )
 
+        read_only_fields = ('email',)
+      
 
 class SocialSerializer(serializers.Serializer):
     provider = serializers.CharField(max_length=255, required=True)

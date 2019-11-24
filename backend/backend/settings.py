@@ -46,13 +46,13 @@ INSTALLED_APPS = [
     'online',
     'user',
     'board',
+    'main_crawling',
 
 
 
     
     'sslserver',
     'corsheaders',
-    
 
     
 ]
@@ -80,8 +80,8 @@ REST_FRAMEWORK = {
 
         #rest-login
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
        
         # OAuth
         # 'oauth2_provider.ext.rest_framework.OAuth2Authentication',  # django-oauth-toolkit < 1.0.0
