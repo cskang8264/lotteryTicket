@@ -35,7 +35,6 @@ class Board extends React.Component {
 
 
   render() {
-    const {boards} =this.state.boards;
     return (
       <Container
         style={{
@@ -45,20 +44,25 @@ class Board extends React.Component {
           height: "800px"
         }}
       >
-        <div>
-          {boards}
-        </div>
-        <BootstrapTable data={boards}>
-          <TableHeaderColumn isKey dataField="id">
-            title
-          </TableHeaderColumn>
-          <TableHeaderColumn dataField="content">
-            content
-          </TableHeaderColumn>
-          <TableHeaderColumn>
-            title
-          </TableHeaderColumn>
-        </BootstrapTable>
+        <Table striped>
+          <thead>
+            <tr>
+              <th>작성자</th>
+              <th>제목</th>
+              <th>날짜</th>
+            </tr>
+          </thead>
+        {this.state.boards ? this.state.boards.map(board =>{
+        return (
+          <tbody>
+            <tr>
+              <td>{board.user.email}</td>
+              <td><a href={"http://localhost:3000/#/board/posts/"+board.id} style={{color:"#000"}}>{board.title}</a></td>
+              <td>{board.created_at}</td>
+            </tr>
+          </tbody>)
+        }):""}
+        </Table>
         <Button
           style={{
             text_align: "center",
@@ -70,20 +74,6 @@ class Board extends React.Component {
         >
           글쓰기
         </Button>
-        <br />
-        <br />
-        <Table striped>
-          <tr>
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성자</th>
-            <th>날짜</th>
-            <th>조회수</th>
-          </tr>
-
-          <tbody>
-          </tbody>
-        </Table>
 
         <div
           style={{

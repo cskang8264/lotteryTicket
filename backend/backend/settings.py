@@ -1,5 +1,5 @@
 
-
+import datetime
 import os
 from django.urls import reverse_lazy
 
@@ -66,7 +66,8 @@ REST_USE_JWT = True
 ACCOUNT_LOGOUT_ON_GET = True
 
 JWT_AUTH = {
-    'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'backend.utils.my_jwt_response_handler',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=10000)
 }
 
 

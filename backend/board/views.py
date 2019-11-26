@@ -25,7 +25,7 @@ class PostView(viewsets.ModelViewSet):
         serializer.save(user=self.request.user)
 
 @permission_classes((IsAuthenticated, ))
-@authentication_classes((JSONWebTokenAuthentication,))
+# @authentication_classes((JSONWebTokenAuthentication,))
 class CommentList(APIView):
 
 
@@ -46,7 +46,7 @@ class CommentList(APIView):
 
 
 @permission_classes((IsAuthenticated, ))
-@authentication_classes((JSONWebTokenAuthentication,))
+# @authentication_classes((JSONWebTokenAuthentication,))
 class CommentDetail(APIView):
     def get_object(self, post_pk, comment_pk):
         try:

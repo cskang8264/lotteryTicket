@@ -7,14 +7,20 @@ import Mypage from "../Routes/MyPage";
 import Main from "../Routes/Main";
 import Board from "../Routes/Board";
 import Text from "../Routes/Text";
+import BoardDetail from "../Routes/BoardDetail"
+import Ticket from "../Routes/Ticket"
+import TimeSale from "../Routes/TImeSale"
 const LoggedInRoutes = () => (
   <Switch>
     <Route exact path="/" component={Main} />
     <Route path="/SignUp" component={SignUp} />
     <Route path="/Login" component={Login} />
     <Route path="/Mypage" component={Mypage} />
-    <Route path="/Board" component={Board} />
+    <Route exact path="/Board" component={Board} />
     <Route path="/Text" component={Text} />
+    <Route path="/board/posts/:id" component={BoardDetail} />
+    <Route path="/ticket/:id" component={Ticket} />
+    <Route path="/TimeSale" component={TimeSale} />
     <Redirect from="*" to="/" />
   </Switch>
 );

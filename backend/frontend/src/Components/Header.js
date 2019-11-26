@@ -71,7 +71,11 @@ class Header extends React.Component {
                     회원가입
                   </Link>
                 </Nav.Link>
-                <Nav.Link href="/timesale">타임세일</Nav.Link>
+                <Nav.Link>
+                <Link to="/timesale" style={{ color: "#000" }}>
+                    타임세일
+                  </Link>
+                  </Nav.Link>
                 <Nav.Link>
                   <Link to="/mypage" style={{ color: "#000" }}>
                     마이페이지
