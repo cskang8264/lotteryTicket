@@ -9,23 +9,29 @@ from .serializers import PostSerializer, CommentSerializer
 from .models import Post, Comment
 from rest_framework import permissions
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 from user.models import User
 
-from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+class Mypagination(PageNumberPagination):
+    PAGE_SIZE = 5
+
+
 
 @permission_classes((IsAuthenticated, ))
 @authentication_classes((JSONWebTokenAuthentication,))
 class PostView(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    pagination_class = Mypagination
     
     
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+       serializer.save(user=self.request.user)
 
 @permission_classes((IsAuthenticated, ))
-# @authentication_classes((JSONWebTokenAuthentication,))
+@authentication_classes((JSONWebTokenAuthentication,))
 class CommentList(APIView):
 
 
@@ -46,7 +52,7 @@ class CommentList(APIView):
 
 
 @permission_classes((IsAuthenticated, ))
-# @authentication_classes((JSONWebTokenAuthentication,))
+@authentication_classes((JSONWebTokenAuthentication,))
 class CommentDetail(APIView):
     def get_object(self, post_pk, comment_pk):
         try:

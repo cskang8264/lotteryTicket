@@ -17,7 +17,7 @@ class Home extends React.Component {
         headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
       })
       const tickets = await res.json();
-      this.setState({tickets})
+      this.setState({tickets:tickets.results})
       console.log(this.state.tickets)
     }catch(e){
     }
@@ -91,7 +91,7 @@ class Home extends React.Component {
             >
                 {this.state.tickets ? this.state.tickets.map(ticket =>{
         return (
-          <a href={"http://localhost:3000/#/ticket/"+ticket.id}>
+          <a href={"http://localhost:3000/#/main/"+ticket.id}>
                     <Card style={{ width: "14rem" }}>
                       <Card.Img
                         variant="top"

@@ -1,37 +1,42 @@
 import React from "react";
 import { Table, Button, Pagination } from "react-bootstrap";
-import {BootstrapTable,TableHeaderColumn}from "react-bootstrap-table"
 import Container from "react-bootstrap/Container";
-import { HashRouter as Link } from "react-router-dom";
-import axios from "axios";
+
 
 let active = 1;
 let items = [];
-for (let number = 1; number <= 5; number++) {
-  items.push(
-    <Pagination.Item key={number} active={number === active}>
-      {number}
-    </Pagination.Item>
-  );
-}
-
 class Board extends React.Component {
   state = {
-    boards: []
+    boards: [],
+    number:""
   };
-
+  
   async componentWillMount() {
- 
+    
+    for (let number = 1; number <= 5; number++) {
+      items.push(
+        <Pagination.Item key={number} active={number === active} onClick={this.handleChange}>
+          {number}
+        </Pagination.Item>
+      );
+    }
     try{
       const res = await fetch("http://127.0.0.1:8000/board/posts/", {
         headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
       })
       const boards = await res.json();
-      this.setState({boards})
+      this.setState({boards:boards.results})
       console.log(this.state.boards)
     }catch(e){
     }
   }
+  handleChange = e => {
+    this.setState({
+      number: e.target.key
+    });
+    console.log(e.target.active)
+    console.log(this.state.number)
+  };
 
 
   render() {

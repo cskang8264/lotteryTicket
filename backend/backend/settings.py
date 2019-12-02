@@ -72,6 +72,9 @@ JWT_AUTH = {
 
 
 REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+    
      'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.IsAdminUser',
@@ -306,3 +309,7 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 ACCOUNT_ADAPTER = 'user.adapter.CustomAccountAdapter'
 
 
+#결제모듈 연동
+
+IAMPORT_KEY = '0842791281664014'
+IAMPORT_SECRET = '2d7wujrzaQNUMW7E5MlyNt3LvxGEKTYN65kApL9zCXtoTB3ZnoxaSBWo9C2Tv1HB62cvNm5qjzOdaRcx'

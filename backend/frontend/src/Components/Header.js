@@ -12,7 +12,7 @@ class Header extends React.Component {
 
   componentWillMount(){
     axios
-    .get("http://127.0.0.1:8000/auth/mypage/8/", {
+    .get("http://127.0.0.1:8000/auth/mypage/1/", {
       headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
     })
     .then(res =>
@@ -47,7 +47,10 @@ class Header extends React.Component {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <Router>
-                <Nav.Link href="/">홈</Nav.Link>
+                <Nav.Link>
+                  <Link to="/" style={{ color: "#000" }}>
+                    홈
+                  </Link></Nav.Link>
                 <Nav.Link>
                   <Link to="/board" style={{ color: "#000" }}>
                     게시판

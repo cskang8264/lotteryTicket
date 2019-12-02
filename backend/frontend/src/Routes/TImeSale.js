@@ -17,7 +17,7 @@ class TimeSale extends React.Component {
         headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
       })
       const tickets = await res.json();
-      this.setState({tickets})
+      this.setState({tickets:tickets.results})
       console.log(this.state.tickets)
     }catch(e){
     }

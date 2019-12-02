@@ -22,22 +22,54 @@ def main_Crawling(html) :
 
     temp_list = []
     temp_dict = {}
-    id = -1 
+    a_dict = {}
+    id = -1
+    aid = 0 
     # data = {}
     for tr in tr_list :
         id += 1
+        del temp_list[:]
         area = tr.find('span',{'class':'category_rows_area'}).text
         title = tr.find('span',{'class':'category_rows_title'}).text
         sale = tr.find('td',{'class':'category_rows_sale'}).text.strip()
         price = tr.find('td',{'class':'category_rows_price'}).text
         img = tr.find('img')
         img_src = img.get('src')
+        ########상세페이지 크롤링########
+        href = tr.find('a')
+        href_link = href.get('href')
+        link = "https://www.timeticket.co.kr%s" %(href_link)
+
+        re = requests.get(link)
+        htm = BS(re.text, 'html.parser', from_encoding='utf-8')
+        
+        a_list = htm.select('#ajaxcontentarea')
+
+        for a in a_list :
+            detail_guide = a.find('div',{'class':'viewpage_text'}).text
+            # you = a.find('iframe')
+            # youtube = you.get('src')
+            dimg_list = a.find('div',{'class':'main_detail_img'}).find_all('img')
+            for dimg in dimg_list :
+                aid += 1
+                detail_src = dimg.get('src')
+                temp_list.append(detail_src)
+
+
+                
+
+        ########상세페이지 크롤링########
+        # print(temp_list)
+
+
         # print(img_src,area,title,sale,price) 
         # temp_list.append([img_src,area,title,sale,price])
         temp_dict[str(id)] = {'img_src':img_src, 'area':area, 'title':title,
-                    'sale':sale, 'price':price}
+                    'sale':sale, 'price':price, 'detail_guide':detail_guide,'detail_src':temp_list[0:4]}
+        
         # data[tr.area] = 1
-    
+        # print(temp_dict)
+        # print(temp_dict)
     return temp_dict
     
 #================================#
@@ -54,17 +86,19 @@ def toJson(main_dict):
 main_list = []
 main_dict = []
 
-
 main_dict = main_Crawling(html)
+# for i in main_dict :
+#     print(main_dict[i])
+# print(main_dict)
+
 
 
 # for item in main_dict :
 #      Crawling(item, main_dict[item]['img_src'],main_dict[item]['area'],main_dict[item]['title'],
 #         main_dict[item]['sale'],main_dict[item]['price']).save()
 for item in main_dict :
-     Crawling(item, main_dict[item]['title'],main_dict[item]['area'],main_dict[item]['sale'],
-        main_dict[item]['price'],main_dict[item]['img_src']).save()
-
+     Crawling(item, main_dict[item]['title'],main_dict[item]['area'],main_dict[item]['sale'],main_dict[item]['price'],main_dict[item]['img_src'],main_dict[item]['detail_guide'],main_dict[item]['detail_src']).save()
+   
 
 
 # for a,b,c,d,e in main_dict :

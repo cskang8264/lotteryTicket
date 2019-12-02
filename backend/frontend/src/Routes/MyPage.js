@@ -15,7 +15,7 @@ class MyPage extends React.Component {
 
   componentWillMount() {
     axios
-      .get("http://127.0.0.1:8000/auth/mypage/8/", {
+      .get("http://127.0.0.1:8000/auth/mypage/1/", {
         headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
       })
       .then(res =>
@@ -38,7 +38,7 @@ class MyPage extends React.Component {
     e.preventDefault();
     if (this.state.password3 === this.state.password2) {
       axios
-        .post("http://127.0.0.1:8000/auth/mypage/8/", {
+        .post("http://127.0.0.1:8000/auth/mypage/1/", {
           email: this.state.email,
           name: this.state.name,
           password1: this.state.password1,

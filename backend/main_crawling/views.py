@@ -13,7 +13,7 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 
 
 
-# @authentication_classes((JSONWebTokenAuthentication,))
+
 @permission_classes((IsAuthenticated, ))
 class CrawlingView(viewsets.ModelViewSet):
     queryset = Crawling.objects.all()

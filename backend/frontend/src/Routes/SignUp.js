@@ -9,7 +9,7 @@ class SignUp extends React.Component {
     name: "",
     password1: "",
     password2: "",
-    phonenumber: ""
+    phone: ""
   };
   handleChange = e => {
     this.setState({
@@ -27,7 +27,7 @@ class SignUp extends React.Component {
         name: this.state.name,
         password1: this.state.password1,
         password2: this.state.password2,
-        phonenumber: this.state.phonenumber
+        phone: this.state.phone
       })
       .then(res => console.log(res))
       .catch(err => console.log(err));
@@ -119,7 +119,7 @@ class SignUp extends React.Component {
             <Form.Control
               placeholder="000-0000-0000"
               onChange={this.handleChange}
-              name="phonenumber"
+              name="phone"
             />
           </Form.Group>
           <Button variant="primary" type="submit" style={{ float: "Right" }}>

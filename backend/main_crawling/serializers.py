@@ -17,5 +17,7 @@ class CrawlingSerializer(serializers.HyperlinkedModelSerializer):
             'sale',
             'price',
             'img_src',
+            'detail_guide',
+            'detail_src',
             # 'comments',
         )
