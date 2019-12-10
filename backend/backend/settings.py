@@ -72,6 +72,7 @@ JWT_AUTH = {
 
 
 REST_FRAMEWORK = {
+    
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20,
     
@@ -96,6 +97,7 @@ REST_FRAMEWORK = {
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
         'rest_framework_social_oauth2.authentication.SocialAuthentication',
     ),
+     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 
@@ -169,6 +171,7 @@ AUTHENTICATION_BACKENDS = (
 )
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# none
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = reverse_lazy('account_confirm_complete')
@@ -279,8 +282,8 @@ SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 # Email backend settings for Django
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'csdwkr66@gmail.com'
-EMAIL_HOST_PASSWORD = 'kang5265@@'
+EMAIL_HOST_USER = 'skhu017105@skhu.net@'
+EMAIL_HOST_PASSWORD = '950224skhu'
 
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True

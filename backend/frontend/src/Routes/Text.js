@@ -30,7 +30,7 @@ class text extends React.Component {
           headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
         }
       )
-      .then(res => console.log(res))
+      .then(res => this.props.history.push("/board"))
       .catch(err => console.log(err));
   };
 

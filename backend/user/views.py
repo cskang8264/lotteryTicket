@@ -1,11 +1,12 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,permission_classes, authentication_classes
 from rest_framework.response import Response
 from rest_auth.registration.views import RegisterView 
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
 
 from django.http import HttpResponseRedirect
 
@@ -118,9 +119,9 @@ class SocialLoginView(generics.GenericAPIView):
 
 
 
-#@authentication_classes((JSONWebTokenAuthentication,))
+@authentication_classes((JSONWebTokenAuthentication,))
 class UserEditProfile(APIView):
-    authentication_classes = [JSONWebTokenAuthentication]
+    # authentication_classes = [JSONWebTokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
 

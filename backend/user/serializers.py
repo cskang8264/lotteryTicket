@@ -8,7 +8,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id','email','phone','name')
+        fields = ('id','email','phone','name',)
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
@@ -75,7 +75,7 @@ class UserEditSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'name', 'phone','id')
+        fields = ('email', 'name', 'phone','id',)
         read_only_fields = ('email',)
 
 

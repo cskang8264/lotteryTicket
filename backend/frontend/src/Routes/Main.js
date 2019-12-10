@@ -13,9 +13,7 @@ class Home extends React.Component {
 
  
     try{
-      const res = await fetch("http://127.0.0.1:8000/main/", {
-        headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
-      })
+      const res = await fetch("http://127.0.0.1:8000/main/", )
       const tickets = await res.json();
       this.setState({tickets:tickets.results})
       console.log(this.state.tickets)

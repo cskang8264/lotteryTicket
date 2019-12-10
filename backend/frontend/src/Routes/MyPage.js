@@ -15,7 +15,7 @@ class MyPage extends React.Component {
 
   componentWillMount() {
     axios
-      .get("http://127.0.0.1:8000/auth/mypage/1/", {
+      .get("http://127.0.0.1:8000/auth/mypage/18/", {
         headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
       })
       .then(res =>
@@ -36,24 +36,19 @@ class MyPage extends React.Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    if (this.state.password3 === this.state.password2) {
+  
       axios
-        .post("http://127.0.0.1:8000/auth/mypage/1/", {
+        .put("http://127.0.0.1:8000/auth/mypage/18/", {
           email: this.state.email,
           name: this.state.name,
           password1: this.state.password1,
-          password2: this.state.password2,
+          password2: this.state.password3,
           phone: this.state.phone
         },{
           headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
         })
-        .then(res => console.log(res))
+        .then(res =>this.props.history.push("/#/"))
         .catch(err => console.log(err));
-    } else {
-      console.log("비밀번호가 틀립니다.");
-      console.log(this.state.password3);
-      console.log(this.state.password2);
-    }
   };
   render() {
     return (
@@ -89,7 +84,6 @@ class MyPage extends React.Component {
               <Form.Label>비밀번호</Form.Label>
               <Form.Control
                 type="password"
-                value="********"
                 onChange={this.handleChange}
                 name="password1"
               />

@@ -5,6 +5,13 @@ import Container from "react-bootstrap/Container";
 
 let active = 1;
 let items = [];
+for (let number = 1; number <= 5; number++) {
+  items.push(
+    <Pagination.Item key={number} active={number === active}>
+      {number}
+    </Pagination.Item>
+  );
+}
 class Board extends React.Component {
   state = {
     boards: [],
@@ -13,13 +20,6 @@ class Board extends React.Component {
   
   async componentWillMount() {
     
-    for (let number = 1; number <= 5; number++) {
-      items.push(
-        <Pagination.Item key={number} active={number === active} onClick={this.handleChange}>
-          {number}
-        </Pagination.Item>
-      );
-    }
     try{
       const res = await fetch("http://127.0.0.1:8000/board/posts/", {
         headers: { Authorization: `JWT ${localStorage.getItem("token")}` }

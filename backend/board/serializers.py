@@ -8,8 +8,25 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'email')
 
+
+class CommentSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+
+    class Meta:
+        model = Comment
+        fields = (
+        'user',
+        'post',
+        'id',
+        'content',
+        )
+        read_only_fields = ('created_at',)
+
+
 class PostSerializer(serializers.HyperlinkedModelSerializer):
-    comments = serializers.StringRelatedField(many=True)
+    comments = CommentSerializer(
+        source='comment_set', many=True, read_only=True)
     user = UserSerializer(read_only=True)
 
     
@@ -23,19 +40,5 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
             'content',
             'comments',
             'created_at',
-        )
-        read_only_fields = ('created_at',)
-
-class CommentSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
-
-
-    class Meta:
-        model = Comment
-        fields = (
-        'user',
-        'post',
-        'id',
-        'content',
         )
         read_only_fields = ('created_at',)

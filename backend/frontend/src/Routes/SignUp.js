@@ -16,21 +16,26 @@ class SignUp extends React.Component {
       [e.target.name]: e.target.value
     });
   };
+  handle = e => {
+    alert('중복확인 되었습니다.')
+  };
   handleSubmit = e => {
     e.preventDefault();
     console.log("aaaaa");
     const value = this.state;
     console.log(value);
     axios
-      .post("http://127.0.0.1:8000/auth/registration/", {
-        email: this.state.email,
-        name: this.state.name,
-        password1: this.state.password1,
-        password2: this.state.password2,
-        phone: this.state.phone
-      })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+    .post("http://127.0.0.1:8000/auth/registration/", {
+      email: this.state.email,
+      name: this.state.name,
+      password1: this.state.password1,
+      password2: this.state.password2,
+      phone: this.state.phone
+    })
+    .then(res => alert("인증 이메일을 발송했습니다.   이메일을 확인해주세요"),
+    this.props.history.push("/"))
+    .catch(err => console.log(err));
+    
   };
   render() {
     return (
@@ -55,9 +60,9 @@ class SignUp extends React.Component {
               />
               <Button
                 variant="primary"
-                type="submit"
                 style={{ float: "Right" }}
                 name="email"
+                onClick={this.handle}
               >
                 중복확인
               </Button>
@@ -78,9 +83,9 @@ class SignUp extends React.Component {
               />
               <Button
                 variant="primary"
-                type="submit"
                 style={{ float: "Right" }}
                 name="name"
+                onClick={this.handle}
               >
                 중복확인
               </Button>

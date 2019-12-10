@@ -28,7 +28,7 @@ class Login extends React.Component {
       .then(
         
         res => localStorage.setItem("token",res.data.token),
-        this.props.history.push("/signup"),
+        this.props.history.push("/#/"),
         this.setState({ isLogin: true }),
       )
       .catch(err => console.log(err));
@@ -70,11 +70,6 @@ class Login extends React.Component {
                 style={{ margin: "auto", display: "box" }}
               >
                 Login
-              </Button>
-            </ButtonToolbar>
-            <ButtonToolbar>
-              <Button variant="outline-success" type="button">
-                SocialLogin
               </Button>
             </ButtonToolbar>
           </div>

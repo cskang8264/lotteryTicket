@@ -13,9 +13,7 @@ class TimeSale extends React.Component {
 
  
     try{
-      const res = await fetch("http://127.0.0.1:8000/main/", {
-        headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
-      })
+      const res = await fetch("http://127.0.0.1:8000/main/")
       const tickets = await res.json();
       this.setState({tickets:tickets.results})
       console.log(this.state.tickets)
@@ -55,7 +53,7 @@ class TimeSale extends React.Component {
             >
                 {this.state.tickets ? this.state.tickets.map(ticket =>{
         return (
-          <a href={"http://localhost:3000/#/ticket/"+ticket.id}>
+          <a href={"http://localhost:3000/#/main/"+ticket.id}>
                     <Card style={{ width: "14rem" }}>
                       <Card.Img
                         variant="top"

@@ -12,7 +12,7 @@ class Header extends React.Component {
 
   componentWillMount(){
     axios
-    .get("http://127.0.0.1:8000/auth/mypage/1/", {
+    .get("http://127.0.0.1:8000/auth/mypage/18/", {
       headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
     })
     .then(res =>

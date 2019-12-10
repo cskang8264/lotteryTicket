@@ -58,9 +58,7 @@ class Ticket extends React.Component {
 
  
     try{
-      const res = await fetch("http://127.0.0.1:8000"+this.props.location.pathname, {
-        headers: { Authorization: `JWT ${localStorage.getItem("token")}` }
-      })
+      const res = await fetch("http://127.0.0.1:8000"+this.props.location.pathname)
       const tickets = await res.json();
       this.setState({tickets})
 
@@ -237,14 +235,29 @@ class Ticket extends React.Component {
       lineHeight: "1.8em",
       letterSpacing:" -0.5px"
       }}>
-        <div style={{
-        fontFamily: "Nanum Gothic",
-        fontSize: "20px",
-        fontWeight: "300",
-        color: "#000",
-        lineHeight: "1.8em"}}>
-          {this.state.tickets.detail_guide}
-        </div>
+<div class="viewpage_text" style={{marginTop:"15px;", fontSize:"13pt"}}>
+				<p style={{fontSize: "20pt"}}>예매정보</p>
+<p >공연기간:&nbsp;<span style={{fontSize: "13pt"}}>OPEN RUN</span></p>
+<p >예매가능시간: 공연 10분 전 까지</p>
+<p >&nbsp;</p>
+<p style={{fontSize: "20pt"}}>관람정보</p>
+<p >관람등급: 만 13세 이상 (신분증/학생증 지참)</p>
+<p>공연시간: 약 100분</p>
+<p>티켓배부: 현장수령 (공연 60분 전부터 공연장 앞 매표소 배부)</p>
+<p>티켓교환: 문자티켓 또는 본인확인 후 발권</p>
+<p>좌석배정: 타예매처 지정석 제외 후 매표소 선착순 배정(앞→뒤, 중앙→사이드)</p>
+<p>입장시간: 공연 시작 15분 전 부터 입장 가능</p>
+<p style={{color:"red"}}>※비지정석 예매입니다. 상단 좌석배정 방식을 확인하세요.</p>
+<p style={{color:"red"}}>※각각 예매하더라도 함께 발권하면 연석 배정 가능합니다.</p>
+<p>&nbsp;</p>
+<p class="viewpage_noti">주의사항</p>
+<p>공연 시작 후 입장 불가, 공연 중 퇴장 시 재입장 불가</p>
+<p>지각으로 인해 관람하지 못할 시 환불/변경 불가</p>
+<p>지역착오, 연령미숙지로 관람하지 못할 시 환불/변경 불가</p>
+<p>음식물 반입 금지, 공연 중 사진/동영상 촬영 금지</p>
+<p style={{color:"red"}}>※당일 관람티켓은 결제 후 환불/변경이 절대 불가합니다.</p>
+<p style={{color:"red"}}>※예매 전 환불규정 및 주의사항을 미리 확인해주세요!</p>
+			</div>
                {this.state.jbSplit ? this.state.jbSplit.map(photo =>{
         return (
           <div style={{
